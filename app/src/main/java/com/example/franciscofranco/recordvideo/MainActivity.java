@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import java.io.File;
@@ -22,12 +23,16 @@ public class MainActivity extends AppCompatActivity {
     public static final String AUTHORITY = "com.example.franciscofranco.recordvideo";
     private VideoView videoView;
     private Uri videoUri;
+    private MediaController mediaController; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         videoView = (VideoView) findViewById(R.id.videoView);
+        mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
     }
 
     public void recordVideo(View v) {
